@@ -9,9 +9,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoutBtn = document.getElementById('logout-btn');
     const tabNavButtons = document.querySelectorAll('.tab-nav-btn');
     const sections = document.querySelectorAll('.section');
-    const commentsToggleBtn = document.getElementById('comments-toggle');
     const showRegisterLink = document.getElementById('show-register');
     const showLoginLink = document.getElementById('show-login');
+
+    // Rating system elements
+    const stars = document.querySelectorAll('.stars .fas');
+    const ratingMessage = document.getElementById('rating-message');
+    
+    // Timeline elements
+    const timelinePoints = document.querySelectorAll('.timeline-point');
 
     // Initialize users if not exists
     if (!localStorage.getItem('users')) {
@@ -51,11 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const tabName = this.getAttribute('data-tab');
             showTab(tabName);
         });
-    });
-
-    // Toggle comments section
-    commentsToggleBtn.addEventListener('click', function() {
-        showTab('services');
     });
 
     function showTab(tabName) {
@@ -143,6 +144,48 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.removeItem('loggedInUser');
         showSuccess('Ви вийшли з системи!');
         setTimeout(() => location.reload(), 1000);
+    });
+
+    // Rating system
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = this.getAttribute('data-rating');
+            
+            // Save to localStorage
+            localStorage.setItem('userRating', rating);
+            
+            // Update UI
+            stars.forEach((s, i) => {
+                s.classList.toggle('active', i < rating);
+            });
+            
+            ratingMessage.textContent = `Дякуємо за оцінку ${rating} з 5!`;
+            setTimeout(() => {
+                ratingMessage.textContent = '';
+            }, 2000);
+        });
+    });
+
+    // Load saved rating
+    const savedRating = localStorage.getItem('userRating');
+    if (savedRating) {
+        stars.forEach((star, i) => {
+            star.classList.toggle('active', i < savedRating);
+        });
+    }
+
+    // Timeline navigation
+    timelinePoints.forEach(point => {
+        point.addEventListener('click', function() {
+            const year = this.getAttribute('data-year');
+            
+            // Highlight active point
+            timelinePoints.forEach(p => p.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show content for selected year (можна додати логіку)
+            showSuccess(`Обрано рік: ${year}`);
+        });
     });
 
     // Toggle hidden text in info section
