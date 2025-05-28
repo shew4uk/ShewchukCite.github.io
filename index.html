@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Secure Site</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -37,26 +36,13 @@
         </div>
     </div>
 
-    <!-- Rating Stars -->
-    <div class="rating-container">
-        <p>Оцініть сайт:</p>
-        <div class="stars">
-            <i class="fas fa-star" data-rating="1"></i>
-            <i class="fas fa-star" data-rating="2"></i>
-            <i class="fas fa-star" data-rating="3"></i>
-            <i class="fas fa-star" data-rating="4"></i>
-            <i class="fas fa-star" data-rating="5"></i>
-        </div>
-        <small id="rating-message"></small>
-    </div>
-
     <div class="tab-navigation">
         <button class="tab-nav-btn" data-tab="home">🏠</button>
         <button class="tab-nav-btn" data-tab="info">ℹ️</button>
-        <button class="tab-nav-btn" data-tab="services">💬</button>
     </div>
 
     <div id="logout-btn" class="logout-btn">🚪</div>
+    <button id="comments-toggle" class="comments-toggle-btn">💬</button>
 
     <main id="main-content" style="display:none;">
         <section id="home" class="section active-tab animate__animated animate__fadeIn">
@@ -67,17 +53,6 @@
         </section>
 
         <section id="info" class="section">
-            <!-- Timeline -->
-            <div class="timeline">
-                <div class="timeline-line"></div>
-                <div class="timeline-point active" data-year="2016">2016</div>
-                <div class="timeline-point" data-year="2021">2021</div>
-                <div class="timeline-point" data-year="2023">2023</div>
-                <div class="timeline-point" data-year="2024">2024</div>
-                <div class="timeline-point" data-year="2025">2025</div>
-                <div class="timeline-line-future"></div>
-            </div>
-            
             <h1 class="animate__animated animate__fadeIn">Інформація</h1>
             <div class="info-container">
                 <div class="info-box animate__animated animate__fadeInLeft">
