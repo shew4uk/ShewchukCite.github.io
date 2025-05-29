@@ -1,100 +1,121 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Secure Site</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Secure Site</title>
+  <!-- Підключення animate.css для анімацій -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="background-animation"></div>
+  <div class="background-animation"></div>
 
-    <!-- Auth Modal -->
-    <div id="auth-modal" class="modal">
-        <div class="modal-content animate__animated animate__bounceIn">
-            <h2>Ласкаво просимо!</h2>
-            <div class="auth-tabs" style="display: none;">
-                <button class="tab-btn active" data-tab="login">Вхід</button>
-                <button class="tab-btn" data-tab="register">Реєстрація</button>
-            </div>
-            
-            <div id="login-form" class="auth-form">
-                <input type="text" id="login-username" placeholder="Логін">
-                <input type="password" id="login-password" placeholder="Пароль">
-                <button id="login-btn">Увійти</button>
-                <p class="auth-switch">Немає акаунта? <a href="#" id="show-register">Зареєструватись</a></p>
-            </div>
-            
-            <div id="register-form" class="auth-form" style="display:none;">
-                <input type="text" id="reg-username" placeholder="Логін">
-                <input type="password" id="reg-password" placeholder="Пароль">
-                <input type="email" id="reg-email" placeholder="Email">
-                <button id="register-btn">Зареєструватись</button>
-                <p class="auth-switch">Вже є акаунт? <a href="#" id="show-login">Увійти</a></p>
-            </div>
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="modal">
+    <div class="modal-content animate__animated animate__bounceIn">
+      <h2>Ласкаво просимо!</h2>
+      <!-- При потребі тут можна реалізувати таби для перемикання між входом та реєстрацією -->
+      <div class="auth-tabs" style="display: none;">
+        <button class="tab-btn active" data-tab="login">Вхід</button>
+        <button class="tab-btn" data-tab="register">Реєстрація</button>
+      </div>
+      <div id="login-form" class="auth-form">
+        <input type="text" id="login-username" placeholder="Логін">
+        <input type="password" id="login-password" placeholder="Пароль">
+        <button id="login-btn">Увійти</button>
+        <p class="auth-switch">Немає акаунта? <a href="#" id="show-register">Зареєструватись</a></p>
+      </div>
+      <div id="register-form" class="auth-form" style="display:none;">
+        <input type="text" id="reg-username" placeholder="Логін">
+        <input type="password" id="reg-password" placeholder="Пароль">
+        <input type="email" id="reg-email" placeholder="Email">
+        <button id="register-btn">Зареєструватись</button>
+        <p class="auth-switch">Вже є акаунт? <a href="#" id="show-login">Увійти</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Панель навігації -->
+  <div class="tab-navigation">
+    <button class="tab-nav-btn" data-tab="home">🏠</button>
+    <button class="tab-nav-btn" data-tab="info">ℹ️</button>
+  </div>
+  <div id="logout-btn" class="logout-btn">🚪</div>
+  <button id="comments-toggle" class="comments-toggle-btn">💬</button>
+
+  <main id="main-content" style="display:none;">
+    <!-- Розділ Home -->
+    <section id="home" class="section active-tab animate__animated animate__fadeIn">
+      <h1>Вітаємо на нашому сайті</h1>
+      <div class="content" id="home-content">
+        <p>Тут ви знайдете корисну інформацію та сервіси.</p>
+      </div>
+    </section>
+
+    <!-- Розділ Інформація -->
+    <section id="info" class="section">
+      <h1 class="animate__animated animate__fadeIn">Інформація</h1>
+      <!-- Кнопка для переходу до Таймлайну -->
+      <div style="text-align: center; margin: 20px 0;">
+        <button id="timeline-btn" class="toggle-btn">Таймлайн</button>
+      </div>
+      <div class="info-container">
+        <div class="info-box animate__animated animate__fadeInLeft">
+          <div class="image-placeholder" data-img="technology"></div>
+          <h3>Інформація 1</h3>
+          <button class="toggle-btn">Детальніше</button>
+          <div class="hidden-text">
+            <p>Додаткова інформація про перший блок.</p>
+          </div>
         </div>
-    </div>
+        <div class="info-box animate__animated animate__fadeInUp">
+          <div class="image-placeholder" data-img="business"></div>
+          <h3>Інформація 2</h3>
+          <button class="toggle-btn">Детальніше</button>
+          <div class="hidden-text">
+            <p>Додаткова інформація про другий блок.</p>
+          </div>
+        </div>
+        <div class="info-box animate__animated animate__fadeInRight">
+          <div class="image-placeholder" data-img="education"></div>
+          <h3>Інформація 3</h3>
+          <button class="toggle-btn">Детальніше</button>
+          <div class="hidden-text">
+            <p>Додаткова інформація про третій блок.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="tab-navigation">
-        <button class="tab-nav-btn" data-tab="home">🏠</button>
-        <button class="tab-nav-btn" data-tab="info">ℹ️</button>
-    </div>
+    <!-- Розділ Таймлайн -->
+    <section id="timeline" class="section">
+      <h1 class="animate__animated animate__fadeIn">Часова шкала</h1>
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <button class="timeline-btn" data-year="2016">2016</button>
+        <button class="timeline-btn" data-year="2021">2021</button>
+        <button class="timeline-btn" data-year="2023">2023</button>
+        <button class="timeline-btn" data-year="2024">2024</button>
+        <button class="timeline-btn" data-year="2025">2025</button>
+        <div id="timeline-content"></div>
+      </div>
+    </section>
 
-    <div id="logout-btn" class="logout-btn">🚪</div>
-    <button id="comments-toggle" class="comments-toggle-btn">💬</button>
+    <!-- Розділ Сервіси (система коментарів) -->
+    <section id="services" class="section">
+      <h1>Сервіси</h1>
+      <div class="services-content">
+        <h2>Напишіть, що вас цікавить, і ми з вами зв'яжемося</h2>
+        <div class="comment-section">
+          <textarea id="comment-input" placeholder="Напишіть ваш коментар тут..."></textarea>
+          <button id="submit-comment" class="submit-comment-btn-inline">Надіслати</button>
+          <div id="comments-display"></div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <main id="main-content" style="display:none;">
-        <section id="home" class="section active-tab animate__animated animate__fadeIn">
-            <h1>Вітаємо на нашому сайті</h1>
-            <div class="content" id="home-content">
-                <p>Тут ви знайдете корисну інформацію та сервіси.</p>
-            </div>
-        </section>
-
-        <section id="info" class="section">
-            <h1 class="animate__animated animate__fadeIn">Інформація</h1>
-            <div class="info-container">
-                <div class="info-box animate__animated animate__fadeInLeft">
-                    <div class="image-placeholder" data-img="technology"></div>
-                    <h3>Інформація 1</h3>
-                    <button class="toggle-btn">Детальніше</button>
-                    <div class="hidden-text">
-                        <p>Додаткова інформація про перший блок.</p>
-                    </div>
-                </div>
-                <div class="info-box animate__animated animate__fadeInUp">
-                    <div class="image-placeholder" data-img="business"></div>
-                    <h3>Інформація 2</h3>
-                    <button class="toggle-btn">Детальніше</button>
-                    <div class="hidden-text">
-                        <p>Додаткова інформація про другий блок.</p>
-                    </div>
-                </div>
-                <div class="info-box animate__animated animate__fadeInRight">
-                    <div class="image-placeholder" data-img="education"></div>
-                    <h3>Інформація 3</h3>
-                    <button class="toggle-btn">Детальніше</button>
-                    <div class="hidden-text">
-                        <p>Додаткова інформація про третій блок.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="section">
-            <h1>Сервіси</h1>
-            <div class="services-content">
-                <h2>Напишіть, що вас цікавить, і ми з вами зв'яжемося</h2>
-                <div class="comment-section">
-                    <textarea id="comment-input" placeholder="Напишіть ваш коментар тут..."></textarea>
-                    <button id="submit-comment" class="submit-comment-btn-inline">Надіслати</button>
-                    <div id="comments-display"></div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
