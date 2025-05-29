@@ -47,6 +47,7 @@
     <button id="comments-toggle" class="comments-toggle-btn">💬</button>
 
     <main id="main-content" style="display:none;">
+        <!-- Home Section -->
         <section id="home" class="section active-tab animate__animated animate__fadeIn">
             <h1>Вітаємо на нашому сайті</h1>
             <div class="content" id="home-content">
@@ -54,9 +55,10 @@
             </div>
         </section>
 
+        <!-- Info Section -->
         <section id="info" class="section">
             <h1 class="animate__animated animate__fadeIn">Інформація</h1>
-            <button id="show-timeline" class="timeline-btn">Показати історію</button>
+            <button id="show-timeline" class="timeline-btn animate__animated animate__pulse animate__infinite">✨ Показати історію</button>
             <div class="info-container">
                 <div class="info-box animate__animated animate__fadeInLeft">
                     <div class="image-placeholder" data-img="technology"></div>
@@ -85,71 +87,101 @@
             </div>
         </section>
 
+        <!-- Timeline Section -->
         <section id="timeline" class="section">
-            <h1>Історія розвитку</h1>
-            <button id="back-to-info" class="back-btn">← Назад до інформації</button>
+            <div class="timeline-header">
+                <button id="back-to-info" class="back-btn animate__animated animate__fadeInLeft">← Назад</button>
+                <h1 class="animate__animated animate__fadeIn">Наша Історія</h1>
+            </div>
             <div class="timeline-container">
                 <div class="timeline">
+                    <!-- Timeline Events -->
                     <div class="timeline-event" data-year="2016">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
+                        <div class="timeline-dot pulse-animation"></div>
+                        <div class="timeline-content animate__animated">
                             <h3>2016</h3>
+                            <p class="timeline-preview">Початок нашої історії</p>
                             <div class="timeline-popup">
-                                <img src="https://source.unsplash.com/random/300x200/?2016" alt="2016">
-                                <p>Текст для 2016 року</p>
+                                <img src="https://source.unsplash.com/random/600x400/?startup,2016" alt="2016" class="popup-image">
+                                <div class="popup-content">
+                                    <h3>2016 - Наші початки</h3>
+                                    <p>Тут ви можете додати повний опис подій 2016 року.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="timeline-event" data-year="2021">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
+                        <div class="timeline-dot pulse-animation"></div>
+                        <div class="timeline-content animate__animated">
                             <h3>2021</h3>
+                            <p class="timeline-preview">Важливий прорив</p>
                             <div class="timeline-popup">
-                                <img src="https://source.unsplash.com/random/300x200/?2021" alt="2021">
-                                <p>Текст для 2021 року</p>
+                                <img src="https://source.unsplash.com/random/600x400/?success,2021" alt="2021" class="popup-image">
+                                <div class="popup-content">
+                                    <h3>2021 - Рік прориву</h3>
+                                    <p>Опишіть ключові події 2021 року.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="timeline-event" data-year="2023">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
+                        <div class="timeline-dot pulse-animation"></div>
+                        <div class="timeline-content animate__animated">
                             <h3>2023</h3>
+                            <p class="timeline-preview">Нові горизонти</p>
                             <div class="timeline-popup">
-                                <img src="https://source.unsplash.com/random/300x200/?2023" alt="2023">
-                                <p>Текст для 2023 року</p>
+                                <img src="https://source.unsplash.com/random/600x400/?future,2023" alt="2023" class="popup-image">
+                                <div class="popup-content">
+                                    <h3>2023 - Розширення можливостей</h3>
+                                    <p>Детально розкажіть про 2023 рік.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="timeline-event" data-year="2024">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
+                        <div class="timeline-dot pulse-animation"></div>
+                        <div class="timeline-content animate__animated">
                             <h3>2024</h3>
+                            <p class="timeline-preview">Сучасні досягнення</p>
                             <div class="timeline-popup">
-                                <img src="https://source.unsplash.com/random/300x200/?2024" alt="2024">
-                                <p>Текст для 2024 року</p>
+                                <img src="https://source.unsplash.com/random/600x400/?technology,2024" alt="2024" class="popup-image">
+                                <div class="popup-content">
+                                    <h3>2024 - Інновації</h3>
+                                    <p>Опишіть теперішні досягнення.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="timeline-event" data-year="2025">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
+                        <div class="timeline-dot pulse-animation"></div>
+                        <div class="timeline-content animate__animated">
                             <h3>2025</h3>
+                            <p class="timeline-preview">Плани на майбутнє</p>
                             <div class="timeline-popup">
-                                <img src="https://source.unsplash.com/random/300x200/?2025" alt="2025">
-                                <p>Текст для 2025 року</p>
+                                <img src="https://source.unsplash.com/random/600x400/?plans,2025" alt="2025" class="popup-image">
+                                <div class="popup-content">
+                                    <h3>2025 - Наші цілі</h3>
+                                    <p>Розкажіть про плани на найближчий рік.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="timeline-line-future"></div>
                 </div>
             </div>
         </section>
 
+        <!-- Services Section -->
         <section id="services" class="section">
             <h1>Сервіси</h1>
             <div class="services-content">
                 <h2>Напишіть, що вас цікавить, і ми з вами зв'яжемося</h2>
-                <div class="rating-section">
+                <div class="rating-section animate__animated animate__fadeIn">
                     <h3>Оцініть наш сайт:</h3>
                     <div class="stars">
                         <i class="fas fa-star" data-rating="1"></i>
