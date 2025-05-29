@@ -12,6 +12,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const commentsToggleBtn = document.getElementById('comments-toggle');
     const showRegisterLink = document.getElementById('show-register');
     const showLoginLink = document.getElementById('show-login');
+    const showTimelineBtn = document.getElementById('show-timeline');
+    const backToInfoBtn = document.getElementById('back-to-info');
+
+    // Rating system
+    const stars = document.querySelectorAll('.stars .fas');
+    const ratingValue = document.getElementById('rating-value');
+    
+    // Timeline system
+    const timelineEvents = document.querySelectorAll('.timeline-event');
+    const timelinePopups = document.querySelectorAll('.timeline-popup');
 
     // Initialize users if not exists
     if (!localStorage.getItem('users')) {
@@ -53,6 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Show timeline from info section
+    showTimelineBtn.addEventListener('click', function() {
+        showTab('timeline');
+    });
+
+    // Back to info from timeline
+    backToInfoBtn.addEventListener('click', function() {
+        showTab('info');
+    });
+
     // Toggle comments section
     commentsToggleBtn.addEventListener('click', function() {
         showTab('services');
@@ -63,6 +83,9 @@ document.addEventListener('DOMContentLoaded', function() {
             section.classList.remove('active-tab');
             if (section.id === tabName) {
                 section.classList.add('active-tab');
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
             }
         });
         
@@ -74,7 +97,81 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Login function
+    // Rating system
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            
+            // Save rating to localStorage
+            localStorage.setItem('userRating', rating);
+            
+            // Update UI
+            stars.forEach((s, i) => {
+                if (i < rating) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+            
+            ratingValue.textContent = rating;
+            showSuccess(`Дякуємо за оцінку ${rating} зірок!`);
+        });
+    });
+
+    // Load saved rating
+    const savedRating = localStorage.getItem('userRating');
+    if (savedRating) {
+        stars.forEach((star, i) => {
+            if (i < savedRating) {
+                star.classList.add('active');
+            }
+        });
+        ratingValue.textContent = savedRating;
+    }
+
+    // Timeline system
+    timelineEvents.forEach(event => {
+        event.addEventListener('click', function() {
+            const popup = this.querySelector('.timeline-popup');
+            
+            // Close all other popups
+            timelinePopups.forEach(p => {
+                if (p !== popup) p.style.display = 'none';
+            });
+            
+            // Toggle current popup
+            if (popup.style.display === 'block') {
+                popup.style.display = 'none';
+            } else {
+                popup.style.display = 'block';
+                
+                // Add close button functionality
+                const closeBtn = document.createElement('span');
+                closeBtn.className = 'close-popup';
+                closeBtn.innerHTML = '&times;';
+                closeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    popup.style.display = 'none';
+                });
+                
+                if (!popup.querySelector('.close-popup')) {
+                    popup.appendChild(closeBtn);
+                }
+            }
+        });
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.timeline-popup') && !e.target.closest('.timeline-content')) {
+            timelinePopups.forEach(popup => {
+                popup.style.display = 'none';
+            });
+        }
+    });
+
+    // Login function (unchanged)
     loginBtn.addEventListener('click', function() {
         const username = document.getElementById('login-username').value;
         const password = document.getElementById('login-password').value;
@@ -99,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Register function
+    // Register function (unchanged)
     registerBtn.addEventListener('click', function() {
         const username = document.getElementById('reg-username').value;
         const password = document.getElementById('reg-password').value;
@@ -112,24 +209,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let users = JSON.parse(localStorage.getItem('users'));
         
-        // Check if user exists
         if (users.some(u => u.username === username)) {
             showError('Користувач з таким іменем вже існує!');
             return;
         }
         
-        // Validate email
         if (!validateEmail(email)) {
             showError('Будь ласка, введіть дійсний email!');
             return;
         }
         
-        // Add new user
         const newUser = { username, password, email };
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
         
-        // Auto login
         localStorage.setItem('loggedInUser', JSON.stringify(newUser));
         authModal.style.display = 'none';
         mainContent.style.display = 'block';
@@ -138,14 +231,14 @@ document.addEventListener('DOMContentLoaded', function() {
         showSuccess('Реєстрація успішна!');
     });
 
-    // Logout function
+    // Logout function (unchanged)
     logoutBtn.addEventListener('click', function() {
         localStorage.removeItem('loggedInUser');
         showSuccess('Ви вийшли з системи!');
         setTimeout(() => location.reload(), 1000);
     });
 
-    // Toggle hidden text in info section
+    // Toggle hidden text in info section (unchanged)
     const toggleButtons = document.querySelectorAll('.toggle-btn');
     toggleButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -153,19 +246,17 @@ document.addEventListener('DOMContentLoaded', function() {
             hiddenText.style.display = hiddenText.style.display === 'block' ? 'none' : 'block';
             this.textContent = hiddenText.style.display === 'block' ? 'Згорнути' : 'Детальніше';
             
-            // Add animation
             if (hiddenText.style.display === 'block') {
                 hiddenText.classList.add('animate__fadeIn');
             }
         });
     });
 
-    // Comment system
+    // Comment system (unchanged)
     const commentInput = document.getElementById('comment-input');
     const commentsDisplay = document.getElementById('comments-display');
     const submitCommentBtn = document.getElementById('submit-comment');
 
-    // Load comments from localStorage
     loadComments();
 
     submitCommentBtn.addEventListener('click', function() {
@@ -184,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const user = JSON.parse(localStorage.getItem('loggedInUser'));
         let comments = JSON.parse(localStorage.getItem('comments') || '[]');
         comments.push({
-            id: Date.now(), // Add unique ID for each comment
+            id: Date.now(),
             text: comment,
             author: user.username,
             date: new Date().toLocaleString(),
@@ -208,7 +299,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>`
         }).join('');
         
-        // Add event listeners to delete buttons
         document.querySelectorAll('.delete-comment-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 deleteComment(this.getAttribute('data-id'));
@@ -224,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showSuccess('Коментар видалено!');
     }
 
-    // Image placeholders hover effect
+    // Image placeholders hover effect (unchanged)
     document.querySelectorAll('.image-placeholder').forEach(placeholder => {
         const imgName = placeholder.getAttribute('data-img');
         placeholder.style.backgroundImage = `url(https://source.unsplash.com/random/300x200/?${imgName})`;
@@ -237,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Helper functions
+    // Helper functions (unchanged)
     function animatePage() {
         document.querySelectorAll('.section').forEach((section, index) => {
             setTimeout(() => {
