@@ -37,26 +37,14 @@
         </div>
     </div>
 
-    <!-- Rating Stars -->
-    <div class="rating-container">
-        <p>Оцініть сайт:</p>
-        <div class="stars">
-            <i class="fas fa-star" data-rating="1"></i>
-            <i class="fas fa-star" data-rating="2"></i>
-            <i class="fas fa-star" data-rating="3"></i>
-            <i class="fas fa-star" data-rating="4"></i>
-            <i class="fas fa-star" data-rating="5"></i>
-        </div>
-        <small id="rating-message"></small>
-    </div>
-
     <div class="tab-navigation">
         <button class="tab-nav-btn" data-tab="home">🏠</button>
         <button class="tab-nav-btn" data-tab="info">ℹ️</button>
-        <button class="tab-nav-btn" data-tab="services">💬</button>
+        <button class="tab-nav-btn" data-tab="timeline">📅</button>
     </div>
 
     <div id="logout-btn" class="logout-btn">🚪</div>
+    <button id="comments-toggle" class="comments-toggle-btn">💬</button>
 
     <main id="main-content" style="display:none;">
         <section id="home" class="section active-tab animate__animated animate__fadeIn">
@@ -67,18 +55,8 @@
         </section>
 
         <section id="info" class="section">
-            <!-- Timeline -->
-            <div class="timeline">
-                <div class="timeline-line"></div>
-                <div class="timeline-point active" data-year="2016">2016</div>
-                <div class="timeline-point" data-year="2021">2021</div>
-                <div class="timeline-point" data-year="2023">2023</div>
-                <div class="timeline-point" data-year="2024">2024</div>
-                <div class="timeline-point" data-year="2025">2025</div>
-                <div class="timeline-line-future"></div>
-            </div>
-            
             <h1 class="animate__animated animate__fadeIn">Інформація</h1>
+            <button id="show-timeline" class="timeline-btn">Показати історію</button>
             <div class="info-container">
                 <div class="info-box animate__animated animate__fadeInLeft">
                     <div class="image-placeholder" data-img="technology"></div>
@@ -107,10 +85,81 @@
             </div>
         </section>
 
+        <section id="timeline" class="section">
+            <h1>Історія розвитку</h1>
+            <button id="back-to-info" class="back-btn">← Назад до інформації</button>
+            <div class="timeline-container">
+                <div class="timeline">
+                    <div class="timeline-event" data-year="2016">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>2016</h3>
+                            <div class="timeline-popup">
+                                <img src="https://source.unsplash.com/random/300x200/?2016" alt="2016">
+                                <p>Текст для 2016 року</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-event" data-year="2021">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>2021</h3>
+                            <div class="timeline-popup">
+                                <img src="https://source.unsplash.com/random/300x200/?2021" alt="2021">
+                                <p>Текст для 2021 року</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-event" data-year="2023">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>2023</h3>
+                            <div class="timeline-popup">
+                                <img src="https://source.unsplash.com/random/300x200/?2023" alt="2023">
+                                <p>Текст для 2023 року</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-event" data-year="2024">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>2024</h3>
+                            <div class="timeline-popup">
+                                <img src="https://source.unsplash.com/random/300x200/?2024" alt="2024">
+                                <p>Текст для 2024 року</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-event" data-year="2025">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>2025</h3>
+                            <div class="timeline-popup">
+                                <img src="https://source.unsplash.com/random/300x200/?2025" alt="2025">
+                                <p>Текст для 2025 року</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-line-future"></div>
+                </div>
+            </div>
+        </section>
+
         <section id="services" class="section">
             <h1>Сервіси</h1>
             <div class="services-content">
                 <h2>Напишіть, що вас цікавить, і ми з вами зв'яжемося</h2>
+                <div class="rating-section">
+                    <h3>Оцініть наш сайт:</h3>
+                    <div class="stars">
+                        <i class="fas fa-star" data-rating="1"></i>
+                        <i class="fas fa-star" data-rating="2"></i>
+                        <i class="fas fa-star" data-rating="3"></i>
+                        <i class="fas fa-star" data-rating="4"></i>
+                        <i class="fas fa-star" data-rating="5"></i>
+                    </div>
+                    <p class="rating-text">Ваша оцінка: <span id="rating-value">0</span>/5</p>
+                </div>
                 <div class="comment-section">
                     <textarea id="comment-input" placeholder="Напишіть ваш коментар тут..."></textarea>
                     <button id="submit-comment" class="submit-comment-btn-inline">Надіслати</button>
